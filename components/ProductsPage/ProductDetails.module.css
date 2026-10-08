@@ -1,0 +1,21 @@
+/* Same spacing as the sections on the home page, below the hero and between products. */
+.list {
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+    margin-top: 60px;
+}
+
+@media (min-width: 768px) {
+    .list {
+        gap: 80px;
+        margin-top: 80px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .list {
+        gap: 150px;
+        margin-top: 150px;
+    }
+}

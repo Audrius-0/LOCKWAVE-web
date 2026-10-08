@@ -39,3 +39,55 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Media: only the files the website uses go to GitHub; everything else in public/ stays local.
+# When a page starts using a new file, add a "!" line for it here.
+/public/**
+!/public/**/
+!/public/awards/Snapchat-1021346839 (2).jpg
+!/public/awards/technorama-pitch.jpg
+!/public/awards/technorama-stand.jpg
+!/public/new/DSC_6542.jpg
+!/public/new/DSC_6563.JPG
+!/public/new/DSC_6579.JPG
+!/public/new/DSC_6601.JPG
+!/public/new/DSC_6742.jpg
+!/public/other_projects/1789682262971.png
+!/public/other_projects/1789682263369.png
+!/public/other_projects/20260724_171601.jpg
+!/public/other_projects/653712829_1608164434651808_5392678024280425232_n.jpg
+!/public/other_projects/653714475_1608164397985145_8262817395022697990_n.jpg
+!/public/other_projects/Screenshot 2026-10-08 232921.png
+!/public/other_projects/drift-car-poster.jpg
+!/public/other_projects/drift-car.mp4
+!/public/other_projects/electric-sled-poster.jpg
+!/public/other_projects/electric-sled.mp4
+!/public/other_projects/kart-build-poster.jpg
+!/public/other_projects/kart-build.mp4
+!/public/other_projects/laser-pcb-layout.jpg
+!/public/other_projects/laser-pcb.jpg
+!/public/other_projects/rc.jpg
+!/public/products/Cine_04_Vista_1.png
+!/public/products/DSC_6622.jpg
+!/public/products/DSC_6678.JPG
+!/public/r&d/Timeline 1.mp4
+!/public/team/Aidas.jpg
+!/public/team/Audrius.jpg
+!/public/team/Domantas.jpg
+!/public/team/Kipras.jpg
+!/public/team/Ugnius.jpg
+!/public/team/team-video.mp4
+!/public/usecases/04a_drone_focus.png
+!/public/usecases/honeycomb_antenna_01.jpg
+!/public/usecases/honeycomb_antenna_02.jpg
+!/public/usecases/honeycomb_antenna_03.jpg
+!/public/usecases/honeycomb_antenna_04.jpg
+!/public/usecases/honeycomb_antenna_05.jpg
+!/public/usecases/honeycomb_antenna_06.jpg
+!/public/usecases/honeycomb_backpack_detail.jpg
+!/public/usecases/honeycomb_battery_01.jpg
+!/public/usecases/honeycomb_battery_02.jpg
+!/public/usecases/honeycomb_battery_03.jpg
+!/public/usecases/honeycomb_battery_04.jpg
+!/public/usecases/honeycomb_battery_05.jpg
+!/public/usecases/honeycomb_stump_hero.jpg

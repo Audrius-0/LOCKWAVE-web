@@ -1,0 +1,49 @@
+/* Keeps the node on the table in frame when a phone shows only a slice of the photo. */
+.image {
+    object-position: 64% 50%;
+}
+
+/* Phones: one word per line, so the title stays in the clouds on the left, clear of the radio. */
+.title {
+    width: min-content;
+}
+
+/*
+ * Tablet and up: the title on one line, high on the left, between two guide lines just
+ * above and below it, with the upright line on its left instead of after it. The top
+ * line sits about an eighth of the way down the hero, the upright one about an eighth
+ * of the way across. (div / h1 + class, to win over PageHero's own rules.)
+ */
+@media (min-width: 768px) {
+    /* A little smaller than other heroes, so the one line ends a bit past halfway, clear of the radio. */
+    h1.title {
+        width: auto;
+        white-space: nowrap;
+        font-size: clamp(48px, 7.7vw, 137px);
+    }
+
+    div.heroContent {
+        --above: 16px;
+        --below: 8px;
+        --before: 20px;
+
+        align-self: start;
+        margin-top: calc(var(--lw-screen) * 0.125 + var(--above));
+        margin-left: calc(12vw - 20px);
+    }
+
+    div.heroContent::after {
+        display: none;
+    }
+
+    div.heroContent::before {
+        content: "";
+        position: absolute;
+        top: -100vh;
+        bottom: -100vh;
+        left: calc(-1 * var(--before));
+        width: var(--lw-guide-size);
+        background: var(--lw-guide);
+        pointer-events: none;
+    }
+}

@@ -1,0 +1,132 @@
+/* The list that holds the rows. */
+.rows {
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+    margin: 60px 0 60px;
+}
+
+/* ---------- Row: image with an overlapping frosted card ---------- */
+
+.row {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    /* A jump to the row lands just under the sticky menu. */
+    scroll-margin-top: calc(var(--lw-nav-height) + 24px);
+}
+
+.media {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    flex-shrink: 0;
+    overflow: hidden;
+    background: var(--lw-surface);
+}
+
+.image {
+    object-fit: cover;
+}
+
+.cropUpper {
+    object-position: 50% 35%;
+}
+
+.cropCenter {
+    object-position: 50% 50%;
+}
+
+.card {
+    position: relative;
+    z-index: 1;
+    margin: -64px 16px 0;
+    padding: 32px 24px;
+    background: var(--lw-glass);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    color: var(--lw-text);
+}
+
+.category {
+    margin: 0 0 12px;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.3;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.cardBody {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.name {
+    margin: 0;
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 1.1;
+    text-transform: uppercase;
+}
+
+@media (min-width: 768px) {
+    .rows {
+        gap: 80px;
+        margin: 80px 0 40px;
+    }
+
+    .row {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .reverse {
+        flex-direction: row-reverse;
+    }
+
+    /* 820 / 1280 wide, 600px tall */
+    .media {
+        width: 64%;
+        height: 600px;
+    }
+
+    /* 560 / 1280 wide, overlapping the photo by 176px */
+    .card {
+        width: 43.75%;
+        margin: 0 0 0 -13.75%;
+        padding: 80px;
+    }
+
+    .reverse .card {
+        margin: 0 -13.75% 0 0;
+    }
+
+    .category {
+        font-size: 18px;
+    }
+
+    .name {
+        font-size: 40px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1100px) {
+    .card {
+        padding: 48px 40px;
+    }
+
+    .media {
+        height: 480px;
+    }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+    .card {
+        background: var(--lw-bg);
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+    }
+}

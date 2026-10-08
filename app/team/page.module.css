@@ -1,0 +1,60 @@
+
+/*
+ * Tablet and up: the word sits in the band above the top guide line, just right of the
+ * upright one. Shifted only visually, so its original spot (and the guide lines framing
+ * it) stay where they are. --above / --after come from PageHero's title block.
+ */
+@media (min-width: 768px) {
+    .heroTitle {
+        translate: calc(100% + var(--after) + 24px) calc(-100% - var(--above));
+    }
+}
+
+.team {
+    margin-top: 60px;
+}
+
+.label {
+    margin: 0 0 12px;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.3;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--lw-muted);
+}
+
+.intro {
+    max-width: 48rem;
+}
+
+/* Closing call to action under the team. */
+.cta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    margin-top: 80px;
+    padding-top: 40px;
+    border-top: 1px solid var(--lw-border);
+}
+
+.ctaTitle {
+    margin-bottom: 16px;
+}
+
+@media (min-width: 768px) {
+    .team {
+        margin-top: 80px;
+    }
+
+    .cta {
+        margin-top: 120px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .team {
+        margin-top: 150px;
+    }
+}

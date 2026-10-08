@@ -1,0 +1,31 @@
+.column {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    min-width: 0;
+}
+
+.title {
+    margin: 0 0 40px;
+}
+
+/* Green heading; scoped to .column so it outranks the shared title colour. */
+.column .accentTitle {
+    color: var(--lw-accent);
+}
+
+.lead {
+    max-width: 36rem;
+    margin-bottom: 40px;
+}
+
+/* Phones: space between the stacked columns. */
+.second {
+    margin-top: 80px;
+}
+
+@media (min-width: 768px) {
+    .second {
+        margin-top: 0;
+    }
+}

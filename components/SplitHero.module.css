@@ -1,0 +1,245 @@
+/* Phones: photo on top, the copy stacked under it. Clips the guide lines to the hero. */
+.hero {
+    display: grid;
+    gap: 32px;
+    padding: 24px 20px 48px;
+    overflow: clip;
+}
+
+/* A tall, square-cornered card, above the guide lines (the upright one starts under it). */
+.photo {
+    position: relative;
+    z-index: 1;
+    aspect-ratio: 4 / 5;
+    max-height: 60svh;
+    overflow: hidden;
+    background: var(--lw-surface);
+}
+
+.image {
+    object-fit: cover;
+}
+
+/* A video fills the card the way a `fill` image does. */
+.video {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+/* --title-size: the headline's font size; a lockup heading can size itself by it too. */
+.copy {
+    --title-size: clamp(36px, 10vw, 44px);
+
+    display: grid;
+    gap: 20px;
+    align-content: center;
+}
+
+/* The small stacked uppercase notes either side of the headline. */
+.label,
+.note {
+    margin: 0;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.35;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--lw-muted);
+}
+
+/* For a plain-text headline. No pair kerning: a glitching letter must not change the width. */
+.title {
+    margin: 0;
+    font-size: var(--title-size);
+    font-weight: 700;
+    line-height: 0.95;
+    letter-spacing: -0.01em;
+    font-kerning: none;
+    text-transform: uppercase;
+    color: var(--lw-text);
+}
+
+.cta {
+    margin-top: 12px;
+}
+
+.srOnly {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* The phone layout's guides (see the media query below); hidden elsewhere. */
+.rules {
+    display: none;
+}
+
+/*
+ * Phones: green guide lines around the headline: one line across the screen above
+ * it and one below it (halfway through the 20px gaps), and an upright one just after it,
+ * from under the photo to the bottom of the hero.
+ */
+@media (max-width: 639px) {
+    /* Only as wide as the headline, so the upright guide can follow its right edge. */
+    .titleWrap {
+        position: relative;
+        justify-self: start;
+    }
+
+    .rules {
+        position: absolute;
+        inset: 0;
+        display: block;
+        pointer-events: none;
+    }
+
+    /* Edge to edge: from the hero's 20px padding out past the screen's right edge (clipped). */
+    .rules::before,
+    .rules::after {
+        content: "";
+        position: absolute;
+        left: -20px;
+        width: 100vw;
+        height: var(--lw-guide-size);
+        background: var(--lw-guide);
+    }
+
+    .rules::before {
+        top: -10px;
+    }
+
+    .rules::after {
+        bottom: -10px;
+    }
+
+    .titleWrap::after {
+        content: "";
+        position: absolute;
+        top: -100vh;
+        bottom: -100vh;
+        right: -16px;
+        width: var(--lw-guide-size);
+        background: var(--lw-guide);
+        pointer-events: none;
+    }
+}
+
+/* Tablet and laptop: photo on the left, the copy stacked beside it. */
+@media (min-width: 640px) {
+    .hero {
+        grid-template-columns: 40% minmax(0, 1fr);
+        align-items: center;
+        gap: 40px;
+        min-height: var(--lw-screen);
+        padding: 40px 32px;
+    }
+
+    .photo {
+        aspect-ratio: 3 / 4.6;
+        max-height: none;
+    }
+
+    .copy {
+        --title-size: clamp(40px, 6vw, 84px);
+    }
+}
+
+@media (min-width: 1024px) {
+    .hero {
+        grid-template-columns: minmax(260px, 26%) minmax(0, 1fr);
+        gap: 56px;
+        padding: 40px;
+    }
+
+    .label,
+    .note {
+        font-size: 13px;
+    }
+}
+
+/*
+ * Wide screens: label, headline and note side by side on one row (the note in the
+ * top-right), the button under the headline. Green guide lines frame the row: one
+ * line above it and one between the headline and the button, both from the photo's edge
+ * to the page's, and an upright one from top to bottom just after the headline.
+ */
+@media (min-width: 1280px) {
+    .copy {
+        position: relative;
+        --title-size: clamp(40px, 4.4vw, 84px);
+
+        grid-template-columns: 120px minmax(0, 1fr) 170px;
+        grid-template-areas:
+            "label title note"
+            ".     cta   .";
+        column-gap: 32px;
+        row-gap: 36px;
+        align-items: start;
+    }
+
+    .label {
+        grid-area: label;
+        padding-top: 6px;
+    }
+
+    /* Only as wide as the headline, so the upright guide can follow its right edge. */
+    .titleWrap {
+        position: relative;
+        grid-area: title;
+        justify-self: start;
+    }
+
+    /* From the photo's edge (the hero's 56px gap) to the page's (its 40px padding). */
+    .copy::before,
+    .copy::after {
+        content: "";
+        position: absolute;
+        right: -40px;
+        left: -56px;
+        height: var(--lw-guide-size);
+        background: var(--lw-guide);
+        pointer-events: none;
+    }
+
+    /* Above the row, a row-gap's distance from the text. */
+    .copy::before {
+        top: -36px;
+    }
+
+    /* Halfway through the 36px gap above the 48px button. */
+    .copy::after {
+        bottom: calc(48px + 18px);
+    }
+
+    /* Half a column gap after the headline, running the hero's full height (it clips the rest). */
+    .titleWrap::after {
+        content: "";
+        position: absolute;
+        top: -100vh;
+        bottom: -100vh;
+        right: -16px;
+        width: var(--lw-guide-size);
+        background: var(--lw-guide);
+        pointer-events: none;
+    }
+
+    .note {
+        grid-area: note;
+        padding-top: 6px;
+        text-align: right;
+    }
+
+    .cta {
+        grid-area: cta;
+        margin-top: 0;
+    }
+}

@@ -1,0 +1,150 @@
+/*
+ * Phones: one card under another, each at most 300px wide. Tablet and up: a centred
+ * block of six columns with each card two wide, so three cards make a row; a shorter
+ * last row of two starts one column in, which centres it under the three above.
+ */
+.grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 40px;
+    margin: 56px 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 24px;
+    border: 1px solid var(--lw-muted);
+    width: 100%;
+    max-width: 300px;
+}
+
+.mobileRight {
+    justify-self: end;
+}
+
+/* A square portrait frame, half the card's width; a calm placeholder until a photo is added. */
+.portrait {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: 50%;
+    aspect-ratio: 1 / 1;
+    margin-bottom: 10px;
+    overflow: hidden;
+    border: 1px solid var(--lw-border);
+    border-radius: 6px;
+    background: var(--lw-surface);
+}
+
+.image {
+    object-fit: cover;
+}
+
+/* Initials in the outlined style of the page titles. */
+.initials {
+    font-size: 44px;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: 0.04em;
+    color: transparent;
+    -webkit-text-stroke: 1.5px var(--lw-muted);
+}
+
+@supports not (-webkit-text-stroke: 1px) {
+    .initials {
+        color: var(--lw-muted);
+    }
+}
+
+.role {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 20px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--lw-accent);
+}
+
+.name {
+    margin: 0;
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 1.15;
+    text-transform: uppercase;
+    color: var(--lw-text);
+}
+
+/* A short, compact bio in grey. */
+.bio {
+    margin: 4px 0 0;
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--lw-muted);
+}
+
+.links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 16px;
+    align-items: center;
+    margin: auto 0 0;
+    padding-top: 6px;
+}
+
+/* The email as plain text, not a link. */
+.email {
+    font-size: 14px;
+    color: var(--lw-text);
+}
+
+.link {
+    font-size: 14px;
+    color: var(--lw-text);
+    text-decoration: underline;
+    text-decoration-color: var(--lw-border);
+    text-underline-offset: 4px;
+    transition: color 250ms ease, text-decoration-color 250ms ease;
+}
+
+.link:hover,
+.link:focus-visible {
+    color: var(--lw-accent);
+    text-decoration-color: var(--lw-accent);
+}
+
+@media (min-width: 768px) {
+    .grid {
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+        gap: 56px 40px;
+        max-width: 880px;
+        margin: 80px auto 0;
+    }
+
+    .card {
+        grid-column: span 2;
+        max-width: none;
+    }
+
+    .mobileRight {
+        justify-self: stretch;
+    }
+
+    /* The second row's first card: one column in, so the two sit centred under the three. */
+    .card:nth-child(4) {
+        grid-column: 2 / span 2;
+    }
+
+    .initials {
+        -webkit-text-stroke-width: 2px;
+    }
+
+    .name {
+        font-size: 24px;
+    }
+}

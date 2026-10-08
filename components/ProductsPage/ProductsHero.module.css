@@ -1,0 +1,4 @@
+/* Keeps the radio on its mast in frame when a phone shows only a slice of the wide photo. */
+.image {
+    object-position: 61% 50%;
+}

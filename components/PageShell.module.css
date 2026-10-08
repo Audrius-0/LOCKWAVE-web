@@ -1,0 +1,48 @@
+/* Design tokens for everything below the menu. The site is dark only. */
+.page {
+    --lw-bg: #0b0c08;
+    --lw-text: #f2f3ec;
+    --lw-muted: #9a9e90;
+    --lw-border: #2a2e22;
+    --lw-surface: #14160f;
+    /* A calm jade green: the accent everywhere (buttons, highlights, the home wordmark). */
+    --lw-accent: #8ed1a6;
+    --lw-on-accent: #0b0c08;
+    --lw-glass: rgba(11, 12, 8, 0.7);
+    /* Guide lines drawn over heroes: their colour and thickness. */
+    --lw-guide: rgba(142, 209, 166, 0.35);
+    --lw-guide-size: 2px;
+    --lw-font: var(--font-geist-sans), "Helvetica Neue", Arial, sans-serif;
+    --lw-nav-height: 64px;
+    /* The whole screen under the menu (and its 1px border): full-screen heroes and blocks. */
+    --lw-screen: calc(100svh - var(--lw-nav-height) - 1px);
+
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    background: var(--lw-bg);
+    color: var(--lw-text);
+    font-family: var(--lw-font);
+    /* clip, not hidden, so nothing creates a scroll container */
+    overflow-x: clip;
+}
+
+/* Sits above the pinned footer and scrolls away to reveal it. */
+.main {
+    position: relative;
+    z-index: 1;
+    padding-bottom: 60px;
+    background: var(--lw-bg);
+}
+
+@media (min-width: 768px) {
+    .main {
+        padding-bottom: 80px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .main {
+        padding-bottom: 150px;
+    }
+}

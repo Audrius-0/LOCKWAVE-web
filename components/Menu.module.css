@@ -1,0 +1,347 @@
+/* Sticky bar in the page's palette; content scrolls underneath it. */
+.nav {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    width: 100%;
+    border-bottom: 1px solid var(--lw-border);
+    font-family: var(--lw-font);
+}
+
+/*
+ * The translucent material lives on its own layer: a backdrop-filter on .nav
+ * itself would trap the fixed phone panel inside the 64px bar.
+ */
+.nav::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: rgba(11, 12, 8, 0.72);
+    backdrop-filter: blur(20px) saturate(160%);
+    -webkit-backdrop-filter: blur(20px) saturate(160%);
+}
+
+/* ---------- Tablet and desktop: one row of links ---------- */
+
+.list {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    height: var(--lw-nav-height);
+    margin: 0;
+    padding: 0 32px;
+    list-style: none;
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+
+.list::-webkit-scrollbar {
+    display: none;
+}
+
+.list li {
+    flex-shrink: 0;
+}
+
+/*
+ * Contact us, with the Lithuanian flag to its right, alone on the right of the bar and
+ * inset a little from the corner so it is noticed.
+ */
+.contactItem {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-left: auto;
+    margin-right: 32px;
+}
+
+.flag {
+    display: block;
+    flex-shrink: 0;
+    width: 30px;
+    height: auto;
+    border-radius: 2px;
+}
+
+.item {
+    position: relative;
+    display: block;
+    padding: 20px 0;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    color: var(--lw-muted);
+    text-decoration: none;
+    transition: color 300ms ease, transform 100ms ease-out;
+}
+
+/* Spaces kept as real gaps between the letter spans. */
+.itemLabel {
+    white-space: pre;
+}
+
+.letter {
+    display: inline-block;
+    transition: transform 350ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Pressed: each letter moves out by its distance from the centre, a little each. */
+.item:active .letter {
+    transform: translateX(calc(var(--o) * 0.07em));
+}
+
+/* 1px green underline that grows from the left, like the links on the page. */
+.item::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 14px;
+    height: 1px;
+    background: var(--lw-accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 300ms ease;
+}
+
+.item:hover,
+.item:focus-visible {
+    color: var(--lw-text);
+}
+
+.item:hover::after,
+.item:focus-visible::after {
+    transform: scaleX(1);
+}
+
+.active {
+    color: var(--lw-accent);
+}
+
+.active::after {
+    transform: scaleX(1);
+}
+
+/* ---------- Phones: burger ---------- */
+
+.phoneBar {
+    display: none;
+    align-items: center;
+    justify-content: flex-end;
+    height: var(--lw-nav-height);
+    padding: 0 20px;
+}
+
+.burger {
+    position: relative;
+    width: 44px;
+    height: 44px;
+    margin-right: -10px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: var(--lw-text);
+    cursor: pointer;
+    transition: transform 100ms ease-out;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Two lines that turn into an X while the menu is open. */
+.burgerIcon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 10px;
+    transform: translate(-50%, -50%);
+}
+
+.burgerIcon::before,
+.burgerIcon::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 1.5px;
+    border-radius: 1px;
+    background: currentColor;
+    transition: transform 300ms cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.burgerIcon::before {
+    top: 0;
+}
+
+.burgerIcon::after {
+    bottom: 0;
+}
+
+.burger[data-open] .burgerIcon::before {
+    transform: translateY(4.25px) rotate(45deg);
+}
+
+.burger[data-open] .burgerIcon::after {
+    transform: translateY(-4.25px) rotate(-45deg);
+}
+
+/* ---------- Phone panel ---------- */
+
+.panel {
+    position: fixed;
+    top: calc(var(--lw-nav-height) + 1px);
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 16px 20px 32px;
+    background: var(--lw-bg);
+    overflow-y: auto;
+}
+
+.panelList {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.panelLink {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--lw-border);
+    font-size: 28px;
+    font-weight: 500;
+    line-height: 1.1;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: var(--lw-text);
+    text-decoration: none;
+    transition: color 300ms ease, transform 100ms ease-out;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.panelLink.active {
+    color: var(--lw-accent);
+}
+
+.panelArrow {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    color: var(--lw-muted);
+}
+
+.panelFooter {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding-top: 32px;
+}
+
+/* Solid, full-width button in the style of the page's main buttons. */
+.panelCta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    height: 56px;
+    border-radius: 999px;
+    background: var(--lw-text);
+    color: var(--lw-bg);
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background-color 300ms ease, color 300ms ease, transform 100ms ease-out;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.panelCta:hover,
+.panelCta:focus-visible {
+    background: var(--lw-accent);
+    color: var(--lw-on-accent);
+}
+
+.panelCtaArrow {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+}
+
+/* Feedback on press, not on release. */
+.panelLink:active,
+.panelCta:active {
+    transform: scale(0.97);
+}
+
+.burger:active {
+    transform: scale(0.92);
+}
+
+.item:focus-visible,
+.burger:focus-visible,
+.panelLink:focus-visible,
+.panelCta:focus-visible {
+    outline: 2px solid var(--lw-accent);
+    outline-offset: 4px;
+}
+
+/* Must match PHONE_QUERY in Menu.tsx. */
+@media (max-width: 639px) {
+    .list {
+        display: none;
+    }
+
+    .phoneBar {
+        display: flex;
+    }
+}
+
+@media (min-width: 640px) {
+    .panel {
+        display: none;
+    }
+}
+
+/* Tablets: a tighter row, so every link, Contact us and the flag fit across the bar. */
+@media (min-width: 640px) and (max-width: 1023px) {
+    .list {
+        gap: 16px;
+    }
+
+    .item {
+        letter-spacing: 0.05em;
+    }
+
+    .contactItem {
+        margin-right: 0;
+    }
+}
+
+@media (min-width: 1024px) {
+    .list {
+        gap: 40px;
+        padding: 0 40px;
+    }
+}
+
+@media (min-width: 1280px) {
+    .list {
+        gap: 56px;
+    }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+    .nav::before {
+        background: var(--lw-bg);
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+    }
+}

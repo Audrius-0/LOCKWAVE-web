@@ -1,0 +1,31 @@
+.head {
+    margin-bottom: 8px;
+}
+
+/* Highlighted phrase inside the intro text. */
+.accent {
+    color: var(--lw-accent);
+}
+
+.spacer {
+    display: none;
+}
+
+/*
+ * The space under it sets the gap before the "More about use cases" button. p.intro, so it
+ * wins over the shared body text's margin: 0 whatever order the stylesheets load in.
+ */
+p.intro {
+    max-width: 42rem;
+    margin-bottom: 24px;
+}
+
+@media (min-width: 768px) {
+    .spacer {
+        display: block;
+    }
+
+    p.intro {
+        margin-bottom: 32px;
+    }
+}

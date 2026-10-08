@@ -1,0 +1,221 @@
+/* Shared section frame and type scale. */
+.section {
+    width: 100%;
+    padding: 0 20px;
+    scroll-margin-top: var(--lw-nav-height);
+}
+
+.inner {
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+.split {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+}
+
+.splitLeft,
+.splitRight {
+    min-width: 0;
+}
+
+/* ---------- Type ---------- */
+
+.label {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 18px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--lw-text);
+}
+
+.title {
+    margin: 2px 0 22px;
+    font-size: 35px;
+    font-weight: 500;
+    line-height: 40px;
+    text-transform: uppercase;
+    overflow-wrap: break-word;
+    color: var(--lw-text);
+}
+
+.lead {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 30px;
+    color: var(--lw-text);
+}
+
+/* Regular weight: light text reads too thin on the dark background. */
+.body {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 28px;
+    color: var(--lw-text);
+}
+
+/* ---------- Actions ---------- */
+
+.pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    height: 34px;
+    padding: 0 24px;
+    border-radius: 999px;
+    background: var(--lw-text);
+    color: var(--lw-bg);
+    font-size: 15px;
+    font-weight: 500;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background-color 250ms ease, color 250ms ease;
+}
+
+.pill:hover,
+.pill:focus-visible {
+    background: var(--lw-accent);
+    color: var(--lw-on-accent);
+}
+
+/* Square white box with a white outline and black text. */
+.box {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    height: 44px;
+    padding: 0 20px;
+    border: 1px solid var(--lw-text);
+    background: var(--lw-text);
+    color: var(--lw-bg);
+    font-size: 15px;
+    font-weight: 500;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background-color 250ms ease, border-color 250ms ease, color 250ms ease;
+}
+
+/* Green while hovered, or for a moment after a tap (data-touched comes from PressableLink). */
+.box:focus-visible,
+.box[data-touched] {
+    border-color: var(--lw-accent);
+    background: var(--lw-accent);
+    color: var(--lw-on-accent);
+}
+
+@media (hover: hover) {
+    .box:hover {
+        border-color: var(--lw-accent);
+        background: var(--lw-accent);
+        color: var(--lw-on-accent);
+    }
+
+    .box:hover .arrow {
+        transform: rotate(-45deg);
+    }
+}
+
+.arrowLink {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--lw-text);
+    text-decoration: none;
+    transition: color 300ms ease;
+}
+
+.arrowLink:hover,
+.arrowLink:focus-visible {
+    color: var(--lw-accent);
+}
+
+.arrow {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+    transition: transform 300ms ease;
+}
+
+/* The arrow turns to point forward on hover. */
+.pill:hover .arrow,
+.arrowLink:hover .arrow {
+    transform: rotate(-45deg);
+}
+
+.pill:focus-visible,
+.box:focus-visible,
+.arrowLink:focus-visible {
+    outline: 2px solid var(--lw-accent);
+    outline-offset: 3px;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+}
+
+@media (min-width: 768px) {
+    .section {
+        padding: 0 24px;
+    }
+
+    /* Hairline that opens each section on tablet and up. */
+    .bordered {
+        padding-top: 40px;
+        border-top: 1px solid var(--lw-border);
+    }
+
+    .split {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .splitLeft {
+        padding-right: 40px;
+    }
+
+    .splitRight {
+        padding-left: 40px;
+    }
+
+    .label {
+        line-height: 20px;
+    }
+
+    .title {
+        font-size: 40px;
+        line-height: 45px;
+    }
+
+    .lead {
+        font-size: 25px;
+    }
+
+    .body {
+        font-size: 22px;
+        line-height: 34px;
+    }
+
+    .pill {
+        height: 44px;
+        font-size: 17px;
+    }
+
+    .arrowLink {
+        font-size: 18px;
+    }
+
+    .box {
+        height: 48px;
+        padding: 0 24px;
+        font-size: 17px;
+    }
+}

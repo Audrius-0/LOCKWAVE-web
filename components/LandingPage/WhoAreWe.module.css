@@ -1,0 +1,97 @@
+/* One image, placed between the columns on mobile and under both on desktop. */
+.grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+        "intro"
+        "media"
+        "details";
+}
+
+.intro {
+    grid-area: intro;
+    min-width: 0;
+}
+
+.lead {
+    max-width: 28rem;
+    margin-bottom: 54px;
+}
+
+.details {
+    grid-area: details;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    min-width: 0;
+}
+
+.facts {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 8px;
+}
+
+.factLabel {
+    margin-right: 6px;
+    font-weight: 600;
+    color: var(--lw-accent);
+}
+
+.action {
+    padding-top: 40px;
+}
+
+/* Full-bleed on phones, contained from tablet up. */
+.media {
+    grid-area: media;
+    width: 100vw;
+    height: 280px;
+    margin: 0 0 60px calc(50% - 50vw);
+}
+
+.mediaImage {
+    object-position: 35% 50%;
+}
+
+@media (min-width: 768px) {
+    .grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-areas:
+            "intro details"
+            "media media";
+    }
+
+    .intro {
+        padding-right: 40px;
+    }
+
+    .details {
+        padding-left: 40px;
+    }
+
+    .lead {
+        margin-bottom: 0;
+    }
+
+    .facts {
+        gap: 20px;
+    }
+
+    .factLabel {
+        margin-right: 8px;
+    }
+
+    .media {
+        width: 100%;
+        height: 420px;
+        margin: 80px 0 0;
+    }
+}
+
+@media (min-width: 1024px) {
+    .media {
+        height: 520px;
+    }
+}

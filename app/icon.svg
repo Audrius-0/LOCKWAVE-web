@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- The footer's Lockwave mark in jade on the site's dark background; lines a little thicker so it reads at tab size. -->
+  <rect width="512" height="512" rx="96" fill="#0b0c08"/>
+  <g transform="translate(41 96) scale(0.84)" fill="#8ed1a6">
+    <path d="m256.07 85.64 88.64 117.58-88.64 117.58-88.64-117.58z" fill="none" stroke="#8ed1a6" stroke-width="22"/>
+    <path d="M167.43 203.22 78.79 85.64l-59.09 117.58 59.09 117.58z" fill="none" stroke="#8ed1a6" stroke-width="22" stroke-dasharray="25 25"/>
+    <path d="m344.71 203.22 88.64-117.58 59.09 117.58-59.09 117.58z" fill="none" stroke="#8ed1a6" stroke-width="22" stroke-dasharray="25 25"/>
+    <ellipse cx="256.07" cy="85.64" rx="24" ry="24"/>
+    <ellipse cx="344.71" cy="203.22" rx="24" ry="24"/>
+    <ellipse cx="256.07" cy="320.81" rx="24" ry="24"/>
+    <ellipse cx="167.43" cy="203.22" rx="24" ry="24"/>
+    <ellipse cx="78.79" cy="85.64" rx="24" ry="24"/>
+    <ellipse cx="19.7" cy="203.22" rx="24" ry="24"/>
+    <ellipse cx="78.79" cy="320.81" rx="24" ry="24"/>
+    <ellipse cx="433.35" cy="85.64" rx="24" ry="24"/>
+    <ellipse cx="492.45" cy="203.22" rx="24" ry="24"/>
+    <ellipse cx="433.35" cy="320.81" rx="24" ry="24"/>
+    <rect x="155" y="26.85" width="15" height="88.19" rx="7.5"/>
+    <rect x="155" y="271.81" width="15" height="88.19" rx="7.5"/>
+    <rect x="332.3" y="26.85" width="15" height="88.19" rx="7.5"/>
+    <rect x="332.3" y="271.81" width="15" height="88.19" rx="7.5"/>
+  </g>
+</svg>

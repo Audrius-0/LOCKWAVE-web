@@ -1,0 +1,381 @@
+/*
+ * Mobile: a normal block at the end of the page.
+ * Tablet and up: pinned underneath <main>, which scrolls away to reveal it.
+ */
+.footer {
+    position: relative;
+    width: 100%;
+    color: var(--lw-text);
+    background: var(--lw-bg);
+}
+
+/* Photo band across the top that continues down a strip on the left. */
+.media {
+    position: relative;
+    height: 160px;
+    overflow: hidden;
+    background: var(--lw-surface);
+}
+
+.mediaImage {
+    object-fit: cover;
+    object-position: 50% 40%;
+    filter: grayscale(0.35);
+}
+
+.panel {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    padding: 40px 20px;
+    background: var(--lw-bg);
+}
+
+/* ---------- Brand ---------- */
+
+.brandColumn {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+/* Phones: the logo, with the social links to its right. */
+.brandRow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+.socialWide {
+    display: none;
+}
+
+.brand {
+    display: inline-flex;
+    align-items: center;
+    color: var(--lw-text);
+    text-decoration: none;
+}
+
+.brandMark {
+    display: block;
+    height: 64px;
+    width: auto;
+    aspect-ratio: 512 / 380;
+    color: var(--lw-accent);
+}
+
+.copyright {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+/* ---------- Incubated by: a grey label, the incubator's logo card, a short line ---------- */
+
+.incubator {
+    display: grid;
+    justify-items: start;
+    gap: 12px;
+}
+
+.incubatorLabel {
+    margin: 0;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--lw-muted);
+}
+
+/* The white rounded logo card, lifting a little on hover. */
+.incubatorLogo {
+    position: relative;
+    display: block;
+    width: 196px;
+    height: 124px;
+    overflow: hidden;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #111111;
+    text-decoration: none;
+    transition: translate 250ms ease, box-shadow 250ms ease;
+}
+
+.incubatorLogo:hover,
+.incubatorLogo:focus-visible {
+    translate: 0 -2px;
+    box-shadow: 0 0 0 2px var(--lw-accent);
+}
+
+.incubatorLogo:focus-visible {
+    outline: none;
+}
+
+/* The yellow sun behind the words, lower left. */
+.ktuSun {
+    position: absolute;
+    left: 18px;
+    top: 36px;
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: #f6c667;
+}
+
+.ktuSpark {
+    position: absolute;
+    left: 86px;
+    top: 14px;
+    font-size: 20px;
+    line-height: 1;
+}
+
+.ktuWords {
+    position: absolute;
+    left: 56px;
+    top: 26px;
+    display: grid;
+    font-family: var(--lw-font);
+    line-height: 0.95;
+}
+
+.ktuSmall {
+    justify-self: end;
+    font-size: 22px;
+    font-weight: 400;
+}
+
+.ktuBig {
+    font-size: 26px;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+}
+
+.ktuSpace {
+    justify-self: end;
+    font-size: 26px;
+    font-weight: 800;
+}
+
+.incubatorText {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.4;
+    color: var(--lw-muted);
+}
+
+/* ---------- Columns ---------- */
+
+/* Phones: one full-width column so the larger text never breaks mid-word. */
+.columns {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 32px;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    min-width: 0;
+}
+
+.wide {
+    max-width: 400px;
+}
+
+/* Green labels, like the facts in the About section, so each block is easy to find. */
+.heading {
+    margin: 0 0 8px;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 20px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--lw-accent);
+}
+
+.spaced {
+    margin-top: 28px;
+}
+
+.text,
+.link {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 30px;
+    color: var(--lw-text);
+}
+
+.link {
+    text-decoration: none;
+    overflow-wrap: break-word;
+    transition: color 300ms ease;
+}
+
+.link:hover,
+.link:focus-visible {
+    color: var(--lw-accent);
+}
+
+.social {
+    display: flex;
+    gap: 36px;
+    margin: 12px 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+.socialLink {
+    display: block;
+    width: 30px;
+    height: 30px;
+    color: var(--lw-text);
+    transition: color 300ms ease;
+}
+
+.socialLink svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.socialLink:hover,
+.socialLink:focus-visible {
+    color: var(--lw-accent);
+}
+
+.brand:focus-visible,
+.link:focus-visible,
+.socialLink:focus-visible {
+    outline: 2px solid var(--lw-accent);
+    outline-offset: 3px;
+}
+
+@media (min-width: 768px) {
+    .socialNarrow {
+        display: none;
+    }
+
+    .socialWide {
+        display: block;
+    }
+
+    /*
+     * Never taller than the screen under the menu: on a short window the photo band above
+     * the panel is trimmed from the top (the panel stays anchored to the bottom), so the
+     * photo cannot show through the see-through menu bar.
+     */
+    /*
+     * Sticky at the bottom, under <main>: it still counts in the page's height from the
+     * first paint (so a reload lands exactly where it was), yet stays put as <main>
+     * scrolls away over it.
+     */
+    .footer {
+        position: sticky;
+        bottom: 0;
+        z-index: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        max-height: calc(100svh - var(--lw-nav-height) - 1px);
+        overflow: hidden;
+        background: transparent;
+    }
+
+    .media {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: 90%;
+        height: auto;
+    }
+
+    /* Brand above the columns until there is room for both side by side. */
+    .panel {
+        margin: 220px 0 0 160px;
+        padding: 40px;
+    }
+
+    .columns {
+        display: flex;
+        gap: 64px;
+    }
+
+    .column {
+        flex-shrink: 0;
+    }
+
+    .wide {
+        width: 280px;
+    }
+
+    .text,
+    .link {
+        font-size: 22px;
+        line-height: 32px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1099px) {
+    .panel {
+        margin-left: 60px;
+    }
+}
+
+@media (min-width: 1280px) {
+    .panel {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .brandColumn {
+        min-width: 0;
+    }
+
+    /* Take all the width the logo leaves free, so the columns grow to the left. */
+    .columns {
+        flex: 1;
+        justify-content: flex-end;
+        gap: 120px;
+    }
+
+    .wide {
+        width: 400px;
+    }
+
+    .heading {
+        font-size: 16px;
+    }
+
+    .text,
+    .link {
+        font-size: 26px;
+        line-height: 38px;
+    }
+
+    .socialLink {
+        width: 32px;
+        height: 32px;
+    }
+
+    .brandMark {
+        height: 72px;
+    }
+}
+
+@media (min-width: 1440px) {
+    .columns {
+        gap: 160px;
+    }
+
+    .brandMark {
+        height: 88px;
+    }
+}

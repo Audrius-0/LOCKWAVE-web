@@ -1,0 +1,40 @@
+/*
+ * Parallax: the layer overhangs the frame by just 5% top and bottom, the least
+ * that lets it drift without showing an edge, so photos are barely cropped.
+ */
+.parallaxFrame {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+}
+
+.parallaxLayer {
+    position: absolute;
+    inset: -5% 0;
+    will-change: transform;
+}
+
+/*
+ * WipeText: the text is painted with a gradient that is half its own colour, half
+ * transparent, twice as wide as the text. Sliding it from right to left fills the
+ * text in from left to right. Inline backgrounds are laid out as if the text were
+ * one unbroken line, so wrapped text fills line after line, in reading order.
+ */
+.wipe {
+    background-image: linear-gradient(to right, currentColor 50%, transparent 50%);
+    background-size: 200% 100%;
+    background-repeat: no-repeat;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/*
+ * Scroll-linked motion isn't covered by MotionConfig's reduced-motion setting,
+ * so it is switched off here. Doing it in CSS keeps server and client markup identical.
+ */
+@media (prefers-reduced-motion: reduce) {
+    .parallaxLayer {
+        transform: none !important;
+    }
+}

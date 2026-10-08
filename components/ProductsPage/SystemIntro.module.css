@@ -1,0 +1,71 @@
+/* Same spacing under the hero as the sections on the other pages. */
+.intro {
+    margin-top: 60px;
+}
+
+.label {
+    margin: 0 0 12px;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.3;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--lw-muted);
+}
+
+.lead {
+    max-width: 48rem;
+}
+
+/* Six short points; one column on phones, two rows of three from tablets. */
+.points {
+    display: grid;
+    gap: 32px;
+    margin: 48px 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+/* A green rule over each point, like the guide lines in the heroes. */
+.point {
+    padding-top: 20px;
+    border-top: var(--lw-guide-size) solid var(--lw-guide);
+}
+
+.pointTitle {
+    margin: 0 0 10px;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.2;
+    text-transform: uppercase;
+    color: var(--lw-text);
+}
+
+.pointText {
+    margin: 0;
+    font-size: 17px;
+    line-height: 1.55;
+    color: var(--lw-muted);
+}
+
+@media (min-width: 768px) {
+    .intro {
+        margin-top: 80px;
+    }
+
+    .points {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 40px;
+        margin-top: 64px;
+    }
+
+    .pointTitle {
+        font-size: 22px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .intro {
+        margin-top: 150px;
+    }
+}

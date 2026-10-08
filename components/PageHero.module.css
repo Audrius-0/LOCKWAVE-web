@@ -1,0 +1,146 @@
+/*
+ * Fills the first screen under the menu. Phones: the title and buttons sit at the
+ * top, where the buttons are easy to reach. Tablet and up: centred vertically on the left.
+ */
+.hero {
+    position: relative;
+    display: grid;
+    align-items: start;
+    height: var(--lw-screen);
+    min-height: 420px;
+    padding: 48px 20px 0;
+    overflow: hidden;
+    background: var(--lw-surface);
+}
+
+.image {
+    object-fit: cover;
+}
+
+/* A video fills the layer the way a `fill` image does (the base reset caps its width otherwise). */
+.video {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    max-width: none;
+    height: 100%;
+}
+
+/*
+ * Title and buttons, above the photo. Only as wide as the title, so the upright guide
+ * can follow its right edge. --above / --below: the space between the lines and the
+ * title / the buttons; --after: from the title to the upright line.
+ */
+.content {
+    --above: 24px;
+    --below: 24px;
+    --after: 40px;
+
+    position: relative;
+    z-index: 2;
+    justify-self: start;
+}
+
+.guides {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+/* Across the whole photo, wherever the title sits (the hero clips the rest). */
+.guides::before,
+.guides::after {
+    content: "";
+    position: absolute;
+    left: -100vw;
+    width: 200vw;
+    height: var(--lw-guide-size);
+    background: var(--lw-guide);
+}
+
+.guides::before {
+    top: calc(-1 * var(--above));
+}
+
+.guides::after {
+    bottom: calc(-1 * var(--below));
+}
+
+/* Just after the title, from the top of the photo to its bottom (the hero clips the rest). */
+.content::after {
+    content: "";
+    position: absolute;
+    top: -100vh;
+    bottom: -100vh;
+    right: calc(-1 * var(--after));
+    width: var(--lw-guide-size);
+    background: var(--lw-guide);
+    pointer-events: none;
+}
+
+/* Heavy solid letters, white by default. No pair kerning: a glitching letter must not change the width. */
+.title {
+    margin: 0;
+    font-size: clamp(48px, 15vw, 96px);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    font-kerning: none;
+    text-transform: uppercase;
+    color: var(--lw-text);
+}
+
+/* Black letters, for a pale photo. */
+.dark {
+    color: var(--lw-bg);
+}
+
+.srOnly {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* On narrow phones a second button wraps under the first. */
+.actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 24px;
+}
+
+/* 9vw keeps a word of about 8 letters in the left half, clear of the photo's subject. */
+@media (min-width: 640px) {
+    .hero {
+        align-items: center;
+        padding: 0 32px;
+    }
+
+    .content {
+        --above: 96px;
+        --below: 48px;
+    }
+
+    .title {
+        font-size: clamp(56px, 9vw, 160px);
+    }
+}
+
+@media (min-width: 768px) {
+    .actions {
+        margin-top: 32px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .hero {
+        padding: 0 40px;
+    }
+}

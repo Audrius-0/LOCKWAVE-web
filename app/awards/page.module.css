@@ -1,0 +1,202 @@
+/* Phones: the name and the note, then the photos one under another. */
+.awards {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+        "title"
+        "note"
+        "a"
+        "b"
+        "c";
+    gap: 16px;
+    padding: 32px 20px 48px;
+}
+
+/* Close to the photos' own 4:3, so little is cropped away. */
+.photo {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    background: var(--lw-surface);
+}
+
+.image {
+    object-fit: cover;
+}
+
+.photoA {
+    grid-area: a;
+}
+
+.photoB {
+    grid-area: b;
+}
+
+/* The upright shot from above: a tall frame, so both boards show. */
+.photoC {
+    grid-area: c;
+    aspect-ratio: 4 / 5;
+}
+
+/*
+ * A: the team on stage with both boards, zoomed in on the three of them so their faces
+ * read (they stand about 30–75% across, faces about 30% down the photo).
+ */
+.photoA .image {
+    object-position: 52% 35%;
+    scale: 1.55;
+    transform-origin: 52% 32%;
+}
+
+/* C: the upright shot from above, centred on the two boards and their radios. */
+.photoC .image {
+    object-position: 50% 60%;
+}
+
+/* The name's slot: a container, so the name can size itself to its width. */
+.titleBox {
+    grid-area: title;
+    container-type: inline-size;
+}
+
+/*
+ * Heavy solid letters like the other pages' titles. "TECHNORAMA 2026" at this weight
+ * and tracking is --word-em times its font size wide, so width ÷ --word-em fits it.
+ * No pair kerning: a glitching letter must not change the width.
+ */
+.title {
+    --word-em: 10.1;
+
+    margin: 0;
+    font-size: calc(100cqi / var(--word-em));
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    font-kerning: none;
+    white-space: nowrap;
+    text-transform: uppercase;
+    color: var(--lw-text);
+}
+
+.srOnly {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.note {
+    grid-area: note;
+    display: grid;
+    gap: 6px;
+    margin-bottom: 8px;
+}
+
+.noteText {
+    margin: 0;
+    font-size: 18px;
+    line-height: 1.45;
+    color: var(--lw-text);
+}
+
+/* Tablet: two photos side by side, the wide one under them. */
+@media (min-width: 640px) {
+    .awards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-areas:
+            "title title"
+            "note  note"
+            "a     b"
+            "c     c";
+        gap: 24px;
+        padding: 48px 32px 64px;
+    }
+
+    .photoC {
+        aspect-ratio: 3 / 2;
+    }
+
+    .note {
+        max-width: 28rem;
+    }
+}
+
+/*
+ * Desktop: the sketch. The whole first screen under the menu, each box placed by the
+ * sketch's proportions (in % of the screen's width and height).
+ */
+@media (min-width: 1024px) {
+    /*
+     * The first screen under the menu, but never flatter than about 2:1 (48% of the
+     * width), so on a wide, short window the photo boxes keep close to 4:3 instead of
+     * becoming thin strips; the collage then runs a little past the fold.
+     */
+    .awards {
+        position: relative;
+        display: block;
+        height: max(var(--lw-screen), 48vw);
+        min-height: 560px;
+        padding: 0;
+    }
+
+    .photo,
+    .titleBox,
+    .note {
+        position: absolute;
+        margin: 0;
+        aspect-ratio: auto;
+    }
+
+    /* Each box close to its photo's shape (about 4:3 on a typical screen), so it is barely cropped. */
+    .photoA {
+        left: 52%;
+        top: 2%;
+        width: 26%;
+        height: 33%;
+    }
+
+    .photoB {
+        left: 64.5%;
+        top: 37%;
+        width: 34.5%;
+        height: 46%;
+    }
+
+    .photoC {
+        left: 14%;
+        top: 57%;
+        width: 31%;
+        height: 41%;
+    }
+
+    /* The name across the middle, centred in its band. */
+    .titleBox {
+        left: 3.5%;
+        top: 36%;
+        width: 59.5%;
+        height: 17%;
+        display: flex;
+        align-items: center;
+    }
+
+    .title {
+        width: 100%;
+    }
+
+    /* The note under the end of the name, beside the wide right photo. */
+    .note {
+        left: 49%;
+        top: 57%;
+        width: 14%;
+        max-width: none;
+    }
+
+    .noteText {
+        font-size: clamp(16px, 1.4vw, 22px);
+    }
+}

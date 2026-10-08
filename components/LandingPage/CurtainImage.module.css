@@ -1,0 +1,44 @@
+.frame {
+    position: relative;
+    overflow: hidden;
+    background: var(--lw-surface);
+}
+
+.image {
+    object-fit: cover;
+}
+
+/* Page-coloured panel over the photo that scales away when it scrolls into view. */
+.curtain {
+    position: absolute;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    background: var(--lw-bg);
+    will-change: transform;
+    pointer-events: none;
+}
+
+.full {
+    top: 0;
+    bottom: 0;
+    transform-origin: bottom;
+}
+
+.top {
+    top: 0;
+    height: 50%;
+    transform-origin: top;
+}
+
+.bottom {
+    bottom: 0;
+    height: 50%;
+    transform-origin: bottom;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .curtain {
+        display: none;
+    }
+}

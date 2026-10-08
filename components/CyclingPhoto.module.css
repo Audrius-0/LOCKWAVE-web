@@ -1,0 +1,22 @@
+.stack {
+    position: absolute;
+    inset: 0;
+}
+
+/* Every photo in the same spot; only the shown one is opaque, and it fades in over the last. */
+.layer {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 450ms ease;
+}
+
+.layer[data-shown] {
+    opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .layer {
+        transition: none;
+    }
+}
