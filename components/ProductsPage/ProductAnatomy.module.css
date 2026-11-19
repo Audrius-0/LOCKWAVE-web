@@ -25,9 +25,10 @@
 }
 
 /* Exactly the photo's own ratio, so it is never cropped. */
+/* --photo-w / --photo-h: the photo's pixel size, set per product (upright 2848 × 4288 by default). */
 .photo {
     position: relative;
-    aspect-ratio: 2848 / 4288;
+    aspect-ratio: var(--photo-w, 2848) / var(--photo-h, 4288);
     background: var(--lw-surface);
 }
 
@@ -67,6 +68,11 @@
     line-height: 1;
     color: var(--lw-accent);
     text-shadow: 0 0 4px rgba(11, 12, 8, 0.95), 0 0 2px rgba(11, 12, 8, 0.95);
+}
+
+/* Phones: the numbers on the photo larger, so they read on a small screen. */
+.dot .number {
+    font-size: 24px;
 }
 
 .lines {
@@ -109,11 +115,6 @@
     color: var(--lw-muted);
 }
 
-/* The "More info" button. Phones: at the end of the numbered list. Desktop: see below. */
-.action {
-    margin-top: 48px;
-}
-
 /* Readiness, e.g. PROTOTYPE / TRL 5: a small grey label over a large value. */
 .stage {
     display: grid;
@@ -137,14 +138,14 @@
 }
 
 /*
- * Tablet and up: the figure is 1/0.4 times the photo's width (ratio 2848/4288 ÷ 0.4),
+ * Tablet and up: the figure is 1/0.4 times the photo's width (its ratio ÷ 0.4),
  * so the whole photo fills its middle 40%. Labels sit in the 30% columns either side,
  * at their own height, and lines run from them to the dots.
  */
 @media (min-width: 768px) {
     .figure {
-        /* 2848 / (4288 × 0.4) */
-        aspect-ratio: 2848 / 1715.2;
+        /* photo width / (photo height × 0.4) */
+        aspect-ratio: var(--photo-w, 2848) / calc(var(--photo-h, 4288) * 0.4);
     }
 
     .photo {
@@ -205,7 +206,7 @@
         left: 74%;
     }
 
-    /* Tablets: the top of the left column, above the More info button (lower from 1024px, below). */
+    /* Tablets: the top of the left column (lower from 1024px, below). */
     .stage {
         position: absolute;
         top: 0;
@@ -216,36 +217,15 @@
     .stageValue {
         font-size: 32px;
     }
-
-    /*
-     * Where a left pointer label would sit, right-aligned like them, in the free upper
-     * part of the left column, just below the readiness label. Tablets: 24% (the shorter
-     * figure's labels reach higher); wide screens: 36%, still clear of the Anemo's control
-     * button pointer (from about 42% down).
-     */
-    .action {
-        position: absolute;
-        top: 24%;
-        left: 0;
-        display: flex;
-        justify-content: flex-end;
-        width: 26%;
-        margin: 0;
-        translate: 0 -50%;
-    }
 }
 
 @media (min-width: 1024px) {
     /*
-     * Lower in the column, just above the More info button: a jump from the hero buttons
-     * centres the photo, which can leave the figure's very top under the menu.
+     * Lower in the column: a jump from the hero buttons centres the photo, which can
+     * leave the figure's very top under the menu.
      */
     .stage {
         top: 20%;
-    }
-
-    .action {
-        top: 36%;
     }
 
     .labelName {

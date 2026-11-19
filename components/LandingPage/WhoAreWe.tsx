@@ -6,7 +6,7 @@ import styles from "./WhoAreWe.module.css";
 
 // Demo copy: replace with real text before launch.
 const FACTS = [
-    { label: "Our focus:", text: "resilient, off-grid communication for teams in the field who need reliable audio, text, GPS, sensor data and remote activation in one mesh based system." },
+    { label: "Our focus:", text: "resilient, off-grid communication for teams in the field who need reliable audio, text, GPS, team status, sensor data and remote activation in mesh based systems." },
     { label: "Where we are:", text: "Lithuania." },
 ];
 
@@ -18,7 +18,7 @@ function WhoAreWe() {
                     <RevealGroup className={styles.intro}>
                         <RevealItem as="h3" id="about-title" className={section.title}>WHO ARE WE?</RevealItem>
                         <RevealItem as="p" className={`${section.lead} ${styles.lead}`}>
-                            We are a small hardware team building radios that keep communication running when the usual networks go quiet.
+                            We&apos;re an engineering team turning ideas into real tech, from the first sketch to the final build.
                         </RevealItem>
                     </RevealGroup>
 

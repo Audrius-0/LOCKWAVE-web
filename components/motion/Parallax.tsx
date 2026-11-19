@@ -2,7 +2,8 @@
 
 import { useRef } from "react";
 import type { ReactNode } from "react";
-import { motion, useScroll, useTransform } from "motion/react";
+import { useScroll, useTransform } from "motion/react";
+import * as m from "motion/react-m";
 import styles from "./motion.module.css";
 
 interface ParallaxProps {
@@ -24,9 +25,9 @@ export function Parallax({ children, amount = 4.5 }: ParallaxProps) {
 
     return (
         <div ref={frame} className={styles.parallaxFrame}>
-            <motion.div className={styles.parallaxLayer} style={{ y }}>
+            <m.div className={styles.parallaxLayer} style={{ y }}>
                 {children}
-            </motion.div>
+            </m.div>
         </div>
     );
 }

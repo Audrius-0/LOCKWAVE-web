@@ -3,9 +3,11 @@ import localFont from "next/font/local";
 import "./globals.css";
 
 // Self-hosted (SIL Open Font License, see fonts/Geist-LICENSE.txt), so dev and builds
-// never depend on reaching Google Fonts.
+// never depend on reaching Google Fonts. Cut down to Latin, Lithuanian letters,
+// punctuation, € and arrows (37 KB instead of 68 KB); the full file is in
+// media-originals/fonts for re-subsetting if new characters are needed.
 const geistSans = localFont({
-  src: "./fonts/Geist-Variable.woff2",
+  src: "./fonts/Geist-Variable-latin.woff2",
   variable: "--font-geist-sans",
   weight: "100 900",
 });

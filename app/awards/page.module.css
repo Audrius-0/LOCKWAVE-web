@@ -53,6 +53,136 @@
     object-position: 50% 60%;
 }
 
+/* ---------- The hackathon: the pitch video, the team at work and the prize card ---------- */
+
+.hackVideo {
+    grid-area: a;
+    aspect-ratio: 16 / 9;
+}
+
+.video {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    max-width: none;
+    height: 100%;
+    object-fit: cover;
+}
+
+.hackB {
+    grid-area: b;
+}
+
+/* "MKGA HACKATHON" is a little narrower per letter than "TECHNORAMA 2026". */
+.hackathon .title {
+    --word-em: 9.65;
+}
+
+.hackC {
+    grid-area: c;
+}
+
+/* The team at work (4:3) and the prize card (3:4): each box in its photo's shape, so the whole photo shows. */
+.hackB {
+    aspect-ratio: 4 / 3;
+}
+
+/* The prize card, with rounded corners like the real card. */
+.hackC {
+    aspect-ratio: 553 / 712;
+    border-radius: 14px;
+}
+
+/* A prize (the Google Cloud card, the STARTUP LAB invitation) laid over a photo of the day. */
+.prize {
+    z-index: 1;
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.5);
+}
+
+/*
+ * Phones and tablets: the prize smaller, on the right, pulled up over the bottom of the
+ * photo above it.
+ */
+@media (max-width: 1023px) {
+    .prize {
+        justify-self: end;
+        width: 48%;
+        margin-top: -72px;
+        margin-right: 12px;
+    }
+}
+
+@media (min-width: 640px) and (max-width: 1023px) {
+    .prize {
+        width: 34%;
+        margin-top: -120px;
+        margin-right: 24px;
+    }
+}
+
+/* ---------- Šaulių hakatonas: the video, the team at work and the STARTUP LAB invitation ---------- */
+
+/* "ŠAULIŲ HAKATONAS" is a little wider per letter than "TECHNORAMA 2026". */
+.siauliai .title {
+    --word-em: 10.25;
+}
+
+.siauVideo {
+    grid-area: a;
+    aspect-ratio: 16 / 9;
+}
+
+.siauTeam {
+    grid-area: b;
+    aspect-ratio: 16 / 9;
+}
+
+/* The invitation, with rounded corners like the Google Cloud card. */
+.siauInvite {
+    grid-area: c;
+    aspect-ratio: 1158 / 802;
+    border-radius: 14px;
+}
+
+/*
+ * Landscape, so a little wider than the upright card to stay readable; and on the left,
+ * over the bottom-left corner of the team photo above it.
+ */
+@media (max-width: 1023px) {
+    .siauInvite {
+        justify-self: start;
+        width: 62%;
+        margin-top: -32px;
+        margin-right: 0;
+        margin-left: 12px;
+    }
+}
+
+@media (min-width: 640px) and (max-width: 1023px) {
+    .siauInvite {
+        width: 46%;
+        margin-top: -72px;
+        margin-left: 24px;
+    }
+}
+
+/* The event's page, opening in a new tab. */
+.noteLink {
+    justify-self: start;
+    font-size: 15px;
+    color: var(--lw-text);
+    text-decoration: underline;
+    text-decoration-color: var(--lw-accent);
+    text-underline-offset: 4px;
+    transition: color 250ms ease;
+}
+
+.noteLink:hover,
+.noteLink:focus-visible {
+    color: var(--lw-accent);
+}
+
 /* The name's slot: a container, so the name can size itself to its width. */
 .titleBox {
     grid-area: title;
@@ -93,7 +223,7 @@
 .note {
     grid-area: note;
     display: grid;
-    gap: 6px;
+    gap: 12px;
     margin-bottom: 8px;
 }
 
@@ -123,6 +253,17 @@
 
     .note {
         max-width: 28rem;
+    }
+
+    /* The videos and photos each take the full width. */
+    .hackathon,
+    .siauliai {
+        grid-template-areas:
+            "title title"
+            "note  note"
+            "a     a"
+            "b     b"
+            "c     c";
     }
 }
 
@@ -198,5 +339,108 @@
 
     .noteText {
         font-size: clamp(16px, 1.4vw, 22px);
+    }
+
+    /*
+     * The hackathon: Technorama's collage mirrored. The video large, top right; the name
+     * across the right half, the note under its start; the team at work large on
+     * the left, with the prize card laid over its right edge. Each box takes its
+     * width from the sketch and its height from its photo's shape.
+     */
+    .hackathon,
+    .siauliai {
+        margin-top: 40px;
+    }
+
+    /*
+     * Šaulių hakatonas: the video large, top left; the name and note beside it on the
+     * right; the team photo below, right of centre, with the invitation laid over its
+     * bottom-left corner. Each box takes its width from the sketch, its height from its photo.
+     */
+    /* The invitation hangs a little below the section's edge, so a little more room under it. */
+    .siauliai {
+        margin-bottom: 48px;
+    }
+
+    .siauliai .siauVideo {
+        left: 3.5%;
+        top: 3%;
+        width: 38%;
+        height: auto;
+        aspect-ratio: 16 / 9;
+    }
+
+    .siauliai .titleBox {
+        left: 47%;
+        top: 8%;
+        width: 50%;
+        height: 15%;
+    }
+
+    .siauliai .siauNote {
+        left: 47%;
+        top: 26%;
+        width: 22%;
+    }
+
+    .siauliai .siauTeam {
+        left: 26%;
+        top: 50%;
+        width: 40%;
+        height: auto;
+        aspect-ratio: 16 / 9;
+    }
+
+    .siauliai .siauInvite {
+        left: 13%;
+        top: 76%;
+        width: 20%;
+        height: auto;
+        aspect-ratio: 1158 / 802;
+    }
+
+    .hackathon .hackVideo {
+        left: 42%;
+        top: 2%;
+        width: 36%;
+        height: auto;
+        aspect-ratio: 16 / 9;
+    }
+
+    .hackathon .titleBox {
+        left: 47.5%;
+        top: 46%;
+        width: 50%;
+        height: 15%;
+    }
+
+    .hackathon .hackNote {
+        left: 47.5%;
+        top: 63%;
+        width: 22%;
+    }
+
+    .hackathon .hackB {
+        left: 1%;
+        top: 34%;
+        width: 34.5%;
+        height: auto;
+        aspect-ratio: 4 / 3;
+    }
+
+    .hackathon .hackC {
+        left: 31.5%;
+        top: 56%;
+        width: 14%;
+        height: auto;
+        aspect-ratio: 553 / 712;
+    }
+
+    .prize {
+        box-shadow: 0 24px 48px rgba(0, 0, 0, 0.45);
+    }
+
+    .noteLink {
+        font-size: clamp(15px, 1.1vw, 18px);
     }
 }

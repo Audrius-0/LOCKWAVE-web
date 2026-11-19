@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState, useRef } from 'react';
-import { motion } from 'motion/react';
+import * as m from 'motion/react-m';
 
 const CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*';
 
@@ -153,7 +153,7 @@ function ScrambleText({ text, className, start = true, onComplete, glitchColor =
     }
 
     return (
-        <motion.span
+        <m.span
             className={className}
             style={{ display: 'inline-block', whiteSpace: 'nowrap' }}
             initial={scrambleIn ? { opacity: 0 } : false}
@@ -162,7 +162,7 @@ function ScrambleText({ text, className, start = true, onComplete, glitchColor =
             ref={spanRef}
         >
             {content}
-        </motion.span>
+        </m.span>
     );
 }
 

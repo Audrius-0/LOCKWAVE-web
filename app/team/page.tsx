@@ -18,8 +18,8 @@ const MEMBERS: Member[] = [
     name: "Kipras Petrauskas",
     email: "kipras@lockwave.systems",
     linkedin: "https://www.linkedin.com/in/kipras-petrauskas-b704a5386/",
-    role: "Electronics & hardware",
-    bio: "Leads electronics and 3D printing; led the electronics team at ESA CanSat Lithuania.",
+    role: "Electronic engineer",
+    bio: "Designs Lockwave's electronics and 3D-printed parts; led the electronics team at ESA CanSat Lithuania.",
     photo: "/team/Kipras.jpg",
   },
   {
@@ -27,16 +27,16 @@ const MEMBERS: Member[] = [
     email: "audrius@lockwave.systems",
     linkedin: "https://www.linkedin.com/in/audrius-rai%C5%A1utis-a4a526378/",
     mobileRight: true,
-    role: "Software",
-    bio: "Builds the encryption, data transmission and web tooling of the mesh.",
+    role: "Firmware & cryptography",
+    bio: "Informatics Engineering student at KTU. Works on firmware and embedded C++, wireless communication systems, cryptography and web development.",
     photo: "/team/Audrius.jpg",
   },
   {
     name: "Domantas Valinčius",
     email: "domantas@lockwave.systems",
     linkedin: "https://www.linkedin.com/in/domantas-valin%C4%8Dius-25915a348/",
-    role: "Full-stack & telemetry",
-    bio: "ESA CanSat 2025 winner; builds the full-stack platform and live telemetry.",
+    role: "Embedded systems & mesh networks",
+    bio: "Informatics Engineering student. Works on embedded systems, mesh networking, schematic and hardware prototyping, and software in C++, C# and Python.",
     photo: "/team/Domantas.jpg",
   },
   {
@@ -44,17 +44,17 @@ const MEMBERS: Member[] = [
     mobileRight: true,
     email: "aidas@lockwave.systems",
     linkedin: "https://www.linkedin.com/in/aidas-l-35815b379/",
-    role: "Mechanical design",
-    bio: "3D modelling and mechanical design: enclosures, mounts and prototypes.",
+    role: "Senior project manager",
+    bio: "Manages Lockwave's projects, keeping each build on plan from the first sketch to the finished prototype.",
     photo: "/team/Aidas.jpg",
   },
   {
     name: "Ugnius Bartnikas",
     email: "ugnius@lockwave.systems",
     linkedin: "https://www.linkedin.com/in/ugnius-bartnikas-72549b38a/",
-    role: "Research & strategy",
-    bio: "Market research, cost modelling and the commercial case behind each decision.",
-    photo: "/team/Ugnius.jpg",
+    role: "3D generalist & video editor",
+    bio: "Turns LockWave’s hardware into visuals. Handles 3D modelling, product renders, animation and video editing, making our radios and builds easy to see and understand.",
+    photo: "/team/Ugnius2.jpg",
   },
 ].map((member) => ({ ...member, alt: `Portrait of ${member.name}` }));
 
@@ -65,8 +65,9 @@ function TeamPage() {
         id="team-title"
         title="Team"
         titleClassName={styles.heroTitle}
-        src="/team/team-video.mp4"
+        src="/team/team-video-hd.mp4"
         video
+        poster="/team/team-video-hd-poster.webp"
         tone="dark"
         alt="The Lockwave team at work"
       />
@@ -76,9 +77,6 @@ function TeamPage() {
           <RevealGroup className={section.bordered}>
             <RevealItem as="p" className={styles.label}>Team</RevealItem>
             <RevealItem as="h2" id="people-title" className={section.title}>The people behind Lockwave</RevealItem>
-            <RevealItem as="p" className={`${section.lead} ${styles.intro}`}>
-              A small team of engineers from Lithuania, building radios that keep people connected when the usual networks go quiet.
-            </RevealItem>
           </RevealGroup>
 
           <TeamGrid members={MEMBERS} />

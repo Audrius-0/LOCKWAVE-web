@@ -52,8 +52,9 @@ function RndPage() {
       <SplitHero
         titleId="rnd-title"
         // public/r&d/Timeline 1.mp4 ("&" and the space written as %26 and %20 in the address)
-        src="/r%26d/Timeline%201.mp4"
+        src="/r%26d/timeline-hd.mp4"
         video
+        poster="/r%26d/timeline-hd-poster.webp"
         alt="A circuit board being cut by a laser"
         label={<>Research<br />&amp;<br />development</>}
         heading={

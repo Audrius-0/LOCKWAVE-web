@@ -105,7 +105,7 @@ function Footer() {
                     <div className={styles.columns}>
                         <div className={styles.column}>
                             <p className={styles.heading}>Email</p>
-                            <a href="mailto:lockwave.systems@gmail.com" className={styles.link}>lockwave.systems@gmail.com</a>
+                            <a href="mailto:lockwavesystems@gmail.com" className={styles.link}>lockwavesystems@gmail.com</a>
 
                             {/* The incubator we belong to, linking to its official (English) site. */}
                             <div className={`${styles.incubator} ${styles.spaced}`}>

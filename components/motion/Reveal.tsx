@@ -1,7 +1,7 @@
 'use client';
 
 import type { ReactNode } from "react";
-import { motion } from "motion/react";
+import * as m from "motion/react-m";
 import type { Variants } from "motion/react";
 import { SPRING, VIEWPORT } from "./springs";
 
@@ -16,15 +16,15 @@ import { SPRING, VIEWPORT } from "./springs";
  */
 
 const TAGS = {
-    div: motion.div,
-    p: motion.p,
-    ul: motion.ul,
-    ol: motion.ol,
-    li: motion.li,
-    article: motion.article,
-    h1: motion.h1,
-    h2: motion.h2,
-    h3: motion.h3,
+    div: m.div,
+    p: m.p,
+    ul: m.ul,
+    ol: m.ol,
+    li: m.li,
+    article: m.article,
+    h1: m.h1,
+    h2: m.h2,
+    h3: m.h3,
 };
 
 type Tag = keyof typeof TAGS;
@@ -75,7 +75,7 @@ interface RevealProps extends BaseProps {
 }
 
 export function Reveal({ as = "div", variant = "rise", delay, trigger = "scroll", className, id, children }: RevealProps) {
-    const Component = TAGS[as] as typeof motion.div;
+    const Component = TAGS[as] as typeof m.div;
     const start = trigger === "load" ? { animate: "shown" } : { whileInView: "shown", viewport: VIEWPORT };
     return (
         <Component
@@ -97,7 +97,7 @@ interface RevealGroupProps extends BaseProps {
 }
 
 export function RevealGroup({ as = "div", stagger = 0.08, delay = 0, className, id, children }: RevealGroupProps) {
-    const Component = TAGS[as] as typeof motion.div;
+    const Component = TAGS[as] as typeof m.div;
     return (
         <Component
             className={className}
@@ -117,7 +117,7 @@ interface RevealItemProps extends BaseProps {
 }
 
 export function RevealItem({ as = "div", variant = "rise", className, id, children }: RevealItemProps) {
-    const Component = TAGS[as] as typeof motion.div;
+    const Component = TAGS[as] as typeof m.div;
     return (
         <Component className={className} id={id} variants={variantsFor(variant)}>
             {children}

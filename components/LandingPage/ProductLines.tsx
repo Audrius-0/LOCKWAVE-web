@@ -1,11 +1,11 @@
 import ProductRow from "../ProductRow";
-import { ANEMO, ANEMO_HONEYCOMB } from "../products";
+import { ANEMO, ANEMO_HONEYCOMB, PULSE } from "../products";
 import { RevealGroup, RevealItem } from "../motion/Reveal";
 import section from "./Section.module.css";
 import rows from "../ProductRow.module.css";
 import styles from "./ProductLines.module.css";
 
-const PRODUCTS = [ANEMO, ANEMO_HONEYCOMB];
+const PRODUCTS = [PULSE, ANEMO, ANEMO_HONEYCOMB];
 
 function ProductLines() {
   return (
@@ -14,7 +14,7 @@ function ProductLines() {
         <RevealGroup className={section.bordered}>
           <RevealItem as="h3" id="products-title" className={`${section.title} ${styles.title}`}>What we offer</RevealItem>
           <RevealItem as="p" className={`${section.lead} ${styles.intro}`}>
-            Two product lines on one infrastructure-free mesh network: the full handheld radio, and the Mini edition, a smaller node for sensors, remote activation or a phone.
+            Two product lines on one infrastructure-free mesh network: Pulse, which reports each team member&apos;s status at a press, and the Anemo radios, the full handheld and the Mini edition, a smaller node for sensors, remote activation or a phone.
           </RevealItem>
         </RevealGroup>
 

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import PageShell from "@/components/PageShell";
 import PageHero from "@/components/PageHero";
+import ArrowLink from "@/components/ArrowLink";
 import AlternatingBlocks from "@/components/AlternatingBlocks";
 import type { Block } from "@/components/AlternatingBlocks";
 import styles from "./page.module.css";
@@ -12,6 +13,37 @@ export const metadata: Metadata = {
 // Demo copy for now.
 const USE_CASES: Block[] = [
   {
+    // A close crop of the hc7_kia_k_wide_graded render, on the device.
+    image: "/usecases/pulse-casualty.jpg",
+    alt: "Pulse on a plate carrier in the rain, its top light glowing red after a Dead alert",
+    // Keep the device and its red light in frame when the photo is cropped.
+    position: "50% 45%",
+    label: "Team status",
+    title: "Casualty reporting",
+    text: "One press on Pulse tells the command centre someone is injured or dead, with no shouting over the radio and no chaos. Check-ins at set times confirm to command that everyone else is well, and the signal gets through where voice radio would not.",
+
+    marker: "Pulse",
+    id: "pulse",
+  },
+  {
+    image: "/products/pulse-command.jpg",
+    alt: "A Honeycomb base station with its antenna up on a command post desk, the screens behind it showing a map and each fighter's status",
+    position: "50% 60%",
+    label: "Command post",
+    title: "Every status on one screen",
+    text: "A Honeycomb base station on the command post desk receives every Pulse in range. Command sees who is injured, who is lost and who has checked in, with a log of every event, and can act at once.",
+  },
+  {
+    image: "/products/pulse-dock.jpg",
+    alt: "An open charging case with slots for a team's Pulse units, one standing in its slot with its antennas up",
+    position: "45% 55%",
+    label: "Team kit",
+    title: "Ready for the whole team",
+    text: "One case charges and carries a whole team's set of Pulse units. Open it, hand them out and every fighter is reporting to the command centre in minutes; back in the case, they charge for the next task.",
+    // Set apart from the Anemo use cases below: Pulse is its own product line.
+    dividerAfter: true,
+  },
+  {
     image: "/usecases/honeycomb_stump_hero.jpg",
     alt: "Anemo Honeycomb node set up in a forest clearing, with a cable plugged in",
     // Keep the node and its antennas in frame when the photo is cropped.
@@ -19,6 +51,8 @@ const USE_CASES: Block[] = [
     label: "Data relay",
     title: "More than voice",
     text: "Our devices relay a wide range of data: GPS positions, sensor readings, messages and control commands. Leave a node out in the field and everything it gathers or receives travels on through the mesh, device to device, with no network needed.",
+    marker: "Radios",
+    id: "radios",
   },
   {
     // The same node on a log at night, powered by a different battery pack in each photo.
@@ -58,12 +92,16 @@ function UseCasesPage() {
         id="usecases-title"
         title="Use cases"
         tone="dark"
-        src="/usecases/04a_drone_focus.png"
+        src="/usecases/drone-focus.jpg"
         alt="An Anemo Honeycomb node on a table in the foreground, with a drone flying over the field behind it"
         imageClassName={styles.image}
         titleClassName={styles.title}
         contentClassName={styles.heroContent}
-      />
+      >
+        {/* Down this page to each system's use cases. */}
+        <ArrowLink href="#pulse" variant="pill">PULSE</ArrowLink>
+        <ArrowLink href="#radios" variant="pill">RADIOS</ArrowLink>
+      </PageHero>
       <AlternatingBlocks blocks={USE_CASES} />
     </PageShell>
   );

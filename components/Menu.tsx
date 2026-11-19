@@ -5,7 +5,8 @@ import type { CSSProperties } from "react";
 import type { MouseEvent } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { AnimatePresence, motion } from "motion/react";
+import { AnimatePresence } from "motion/react";
+import * as m from "motion/react-m";
 import type { Variants } from "motion/react";
 import ArrowIcon from "./ArrowIcon";
 import { RevealItem } from "./motion/Reveal";
@@ -26,7 +27,8 @@ const SECONDARY_LINKS = [
 ];
 
 // The contacts in the footer, at the very end of the home page.
-const CONTACT_LINK = { href: "/#page-end", label: "Contact us" };
+// The end of whichever page is open, where the contact details are.
+const CONTACT_LINK = { href: "#page-end", label: "Contact us" };
 
 const PHONE_QUERY = "(max-width: 639px)";
 
@@ -94,7 +96,8 @@ function Menu (){
         setOpen(false);
         if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
         const [path, hash] = href.split("#");
-        if (path !== pathname) return;
+        // A bare #hash (Contact us) always means this page.
+        if (path && path !== pathname) return;
         event.preventDefault();
         requestAnimationFrame(() => {
             if (hash) document.getElementById(hash)?.scrollIntoView();
@@ -156,7 +159,7 @@ function Menu (){
 
             <AnimatePresence>
                 {open && (
-                    <motion.div
+                    <m.div
                         id="phone-menu"
                         className={styles.panel}
                         variants={PANEL}
@@ -195,7 +198,7 @@ function Menu (){
                                 </Link>
                             ))}
                         </RevealItem>
-                    </motion.div>
+                    </m.div>
                 )}
             </AnimatePresence>
         </nav>

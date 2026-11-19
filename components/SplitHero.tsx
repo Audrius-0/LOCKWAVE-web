@@ -11,6 +11,8 @@ interface SplitHeroProps {
     src: string;
     alt: string;
     video?: boolean;
+    // With `video`: a still shown until the video plays (its first frame).
+    poster?: string;
     // Per-page crop (object-position, or sizing for a video), so the subject stays in the tall card.
     imageClassName?: string;
     // Small stacked lines beside the headline (optional).
@@ -28,7 +30,7 @@ interface SplitHeroProps {
  * beside it a small label, a big headline and a note, with a button under the
  * headline. The photo fades in on load and the copy rises in after it.
  */
-function SplitHero({ titleId, src, alt, video = false, imageClassName, label, heading, note, cta }: SplitHeroProps) {
+function SplitHero({ titleId, src, alt, video = false, poster, imageClassName, label, heading, note, cta }: SplitHeroProps) {
     return (
         <section className={styles.hero} aria-labelledby={titleId}>
             <Reveal variant="fade" trigger="load" className={styles.photo}>
@@ -36,6 +38,7 @@ function SplitHero({ titleId, src, alt, video = false, imageClassName, label, he
                     // Muted and inline, so browsers let it start on its own.
                     <LoadingVideo
                         src={src}
+                        poster={poster}
                         aria-label={alt}
                         autoPlay
                         muted
@@ -50,13 +53,15 @@ function SplitHero({ titleId, src, alt, video = false, imageClassName, label, he
                         alt={alt}
                         fill
                         sizes="(min-width: 1024px) 26vw, (min-width: 640px) 40vw, 100vw"
-                        preload
+                        fetchPriority="high"
                         className={`${styles.image} ${imageClassName ?? ""}`}
                     />
                 )}
             </Reveal>
 
             <div className={styles.copy}>
+                {/* Wide screens: the row's guide lines, rising in like the page heroes' lines. */}
+                <Reveal trigger="load" delay={0.2} className={styles.rowRules} />
                 {label && <Reveal as="p" trigger="load" delay={0.1} className={styles.label}>{label}</Reveal>}
                 <Reveal trigger="load" delay={0.2} className={styles.titleWrap}>
                     {heading}

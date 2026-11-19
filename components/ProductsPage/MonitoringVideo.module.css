@@ -1,0 +1,140 @@
+/* Same spacing between sections as the rest of the Products page. */
+.monitoring {
+    margin-top: 60px;
+}
+
+/* The video in its own 16:9 box, square edges like the site's other photos. */
+.frame {
+    position: relative;
+}
+
+.media {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background: var(--lw-surface);
+}
+
+.video {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    max-width: none;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Phones: the steps listed under the video, the current one bright, the rest dimmed. */
+.steps {
+    display: grid;
+    gap: 16px;
+    margin: 20px 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+.step {
+    display: grid;
+    gap: 10px;
+    opacity: 0.4;
+    transition: opacity 400ms ease;
+}
+
+.step[data-current] {
+    opacity: 1;
+}
+
+/* The step's bar: fills over its part of the video, then stays full. */
+.bar {
+    display: block;
+    width: 100%;
+    max-width: 240px;
+    height: 2px;
+    overflow: hidden;
+    background: var(--lw-guide);
+}
+
+.fill {
+    display: block;
+    height: 100%;
+    background: var(--lw-accent);
+    transform-origin: left;
+    transition: transform 300ms linear;
+}
+
+.stepText {
+    font-size: 16px;
+    line-height: 1.45;
+    color: var(--lw-muted);
+}
+
+/*
+ * Tablet and up: the steps build up over the video's lower left, on a soft dark shade
+ * so the white text reads; each one fades and rises in as its part of the video plays.
+ */
+@media (min-width: 768px) {
+    .monitoring {
+        margin-top: 80px;
+    }
+
+    .media::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to top right, rgba(11, 12, 8, 0.78), rgba(11, 12, 8, 0.25) 45%, transparent 70%);
+        pointer-events: none;
+    }
+
+    .steps {
+        position: absolute;
+        left: 40px;
+        bottom: 40px;
+        z-index: 1;
+        width: min(420px, 45%);
+        margin: 0;
+        gap: 20px;
+    }
+
+    .step {
+        opacity: 0;
+        transform: translateY(16px);
+        transition: opacity 500ms ease, transform 600ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .step[data-shown] {
+        opacity: 1;
+        transform: none;
+    }
+
+    /* Earlier steps stay, a little quieter than the current one. */
+    .step[data-shown]:not([data-current]) .stepText {
+        color: rgba(242, 243, 236, 0.6);
+    }
+
+    .stepText {
+        color: var(--lw-text);
+        font-size: 17px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .monitoring {
+        margin-top: 150px;
+    }
+
+    .steps {
+        left: 56px;
+        bottom: 56px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .step {
+        transition: none;
+    }
+
+    .step[data-shown] {
+        transform: none;
+    }
+}

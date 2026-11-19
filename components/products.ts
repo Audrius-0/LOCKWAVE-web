@@ -30,3 +30,14 @@ export const ANEMO_HONEYCOMB: Product = {
     alt: "Anemo Honeycomb node held in an open hand",
     crop: "center",
 };
+
+// The team status device: its own product line beside the Anemo radios.
+export const PULSE: Product = {
+    id: "pulse",
+    category: "Team status device",
+    name: "Pulse",
+    text: "Pulse reports each fighter's situation to the command centre at a press: Injured or Dead reach command at once, and check-ins at set times confirm you are well. No shouting over the radio, and the signal gets through where voice radio struggles.",
+    image: "/products/pulse-dock-detail.jpg",
+    alt: "Close-up of a Pulse unit seated in its charging slot, its buttons and antennas lit from the side",
+    crop: "center",
+};

@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from "react";
-import { motion } from "motion/react";
+import * as m from "motion/react-m";
 import type { HTMLMotionProps } from "motion/react";
 import { SPRING } from "./springs";
 
@@ -23,7 +23,7 @@ export function PressableLink({ onPointerDown, ...props }: HTMLMotionProps<"a">)
     useEffect(() => () => clearTimeout(timer.current), []);
 
     return (
-        <motion.a
+        <m.a
             whileTap={{ scale: 0.97 }}
             transition={SPRING.press}
             data-touched={touched || undefined}

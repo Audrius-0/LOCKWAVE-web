@@ -24,10 +24,6 @@
     color: var(--lw-muted);
 }
 
-.intro {
-    max-width: 48rem;
-}
-
 /* Closing call to action under the team. */
 .cta {
     display: flex;

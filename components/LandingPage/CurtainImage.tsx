@@ -1,7 +1,7 @@
 'use client';
 
 import LoadingImage from "./LoadingImage";
-import { motion } from "motion/react";
+import * as m from "motion/react-m";
 import type { Variants } from "motion/react";
 import { SPRING, VIEWPORT } from "../motion/springs";
 import styles from "./CurtainImage.module.css";
@@ -24,7 +24,7 @@ const CURTAIN: Variants = {
 
 function CurtainImage({ src, alt, sizes, className, imageClassName, variant = "single" }: CurtainImageProps) {
     return (
-        <motion.div
+        <m.div
             className={`${styles.frame} ${className ?? ""}`}
             initial="covered"
             whileInView="revealed"
@@ -32,14 +32,14 @@ function CurtainImage({ src, alt, sizes, className, imageClassName, variant = "s
         >
             <LoadingImage src={src} alt={alt} fill sizes={sizes} className={`${styles.image} ${imageClassName ?? ""}`} />
             {variant === "single" ? (
-                <motion.div className={`${styles.curtain} ${styles.full}`} variants={CURTAIN} />
+                <m.div className={`${styles.curtain} ${styles.full}`} variants={CURTAIN} />
             ) : (
                 <>
-                    <motion.div className={`${styles.curtain} ${styles.top}`} variants={CURTAIN} />
-                    <motion.div className={`${styles.curtain} ${styles.bottom}`} variants={CURTAIN} />
+                    <m.div className={`${styles.curtain} ${styles.top}`} variants={CURTAIN} />
+                    <m.div className={`${styles.curtain} ${styles.bottom}`} variants={CURTAIN} />
                 </>
             )}
-        </motion.div>
+        </m.div>
     );
 }
 

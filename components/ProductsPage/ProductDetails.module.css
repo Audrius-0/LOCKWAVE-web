@@ -19,3 +19,8 @@
         margin-top: 150px;
     }
 }
+
+/* Under a group heading, which already gives the space above. */
+.list.flush {
+    margin-top: 0;
+}

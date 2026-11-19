@@ -133,6 +133,11 @@
     }
 }
 
+/* The row's guide lines only show on wide screens (below). */
+.rowRules {
+    display: none;
+}
+
 /* Tablet and laptop: photo on the left, the copy stacked beside it. */
 @media (min-width: 640px) {
     .hero {
@@ -198,9 +203,17 @@
         justify-self: start;
     }
 
-    /* From the photo's edge (the hero's 56px gap) to the page's (its 40px padding). */
-    .copy::before,
-    .copy::after {
+    /* The row's lines, in a layer covering the copy, from the photo's edge (the hero's
+       56px gap) to the page's (its 40px padding). */
+    .rowRules {
+        position: absolute;
+        inset: 0;
+        display: block;
+        pointer-events: none;
+    }
+
+    .rowRules::before,
+    .rowRules::after {
         content: "";
         position: absolute;
         right: -40px;
@@ -211,12 +224,12 @@
     }
 
     /* Above the row, a row-gap's distance from the text. */
-    .copy::before {
+    .rowRules::before {
         top: -36px;
     }
 
     /* Halfway through the 36px gap above the 48px button. */
-    .copy::after {
+    .rowRules::after {
         bottom: calc(48px + 18px);
     }
 

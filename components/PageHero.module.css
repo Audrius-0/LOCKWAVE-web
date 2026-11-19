@@ -18,6 +18,12 @@
 }
 
 /* A video fills the layer the way a `fill` image does (the base reset caps its width otherwise). */
+/* The photo's fade-in layer, filling the hero like the photo it holds. */
+.photoFade {
+    position: absolute;
+    inset: 0;
+}
+
 .video {
     position: absolute;
     inset: 0;

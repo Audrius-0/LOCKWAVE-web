@@ -16,7 +16,7 @@ function MainInfo () {
             <Reveal variant="fade" trigger="load" className={styles.photo}>
                 {/* Wide screens: a blurred copy fills the sides around the upright photo. */}
                 <div className={styles.backdrop} aria-hidden="true">
-                    <LoadingImage src={SRC} alt="" fill sizes="10vw" loading="eager" className={styles.image} />
+                    <LoadingImage src={SRC} alt="" fill sizes="10vw" className={styles.image} />
                 </div>
                 <div className={styles.front}>
                     <LoadingImage
@@ -24,7 +24,7 @@ function MainInfo () {
                         alt="Lockwave Honey Comb node with two antennas against a pale wall"
                         fill
                         sizes="(min-width: 640px) 45vw, 100vw"
-                        preload
+                        fetchPriority="high"
                         className={styles.image}
                     />
                 </div>
@@ -32,14 +32,15 @@ function MainInfo () {
 
             <div className={styles.shade} aria-hidden="true" />
 
-            <div className={styles.guides} aria-hidden="true">
+            {/* The green guides rise in like the page heroes' lines. */}
+            <Reveal trigger="load" delay={0.2} className={styles.guides}>
                 <span /><span /><span /><span /><span />
-            </div>
+            </Reveal>
 
             <Reveal as="p" trigger="load" delay={0.1} className={styles.tagline}>
                 Advanced mesh radio hardware.<br />
                 Engineered in Lithuania.<br />
-                Proven in the field.
+                Built for the field.
             </Reveal>
 
             {/* No entrance motion: the letters just scramble in where they stand. */}

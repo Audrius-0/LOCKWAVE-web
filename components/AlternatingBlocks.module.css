@@ -1,12 +1,8 @@
-/* A hairline gap under the page hero; the blocks themselves sit flush. */
-.list {
-    margin-top: 4px;
-}
-
-/* Phones: photo on top, text below. */
+/* Phones: photo on top, text below. A jump to a block lands just under the menu. */
 .block {
     display: flex;
     flex-direction: column;
+    scroll-margin-top: var(--lw-nav-height);
 }
 
 .photo {
@@ -76,6 +72,7 @@
     .text {
         padding: 48px;
     }
+
 }
 
 @media (min-width: 768px) {
@@ -92,6 +89,7 @@
     .text {
         padding: 80px;
     }
+
 }
 
 @media (min-width: 1280px) {

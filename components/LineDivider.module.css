@@ -1,0 +1,14 @@
+.divider {
+    padding: 48px 20px;
+}
+
+.line {
+    height: 1px;
+    background: var(--lw-text);
+}
+
+@media (min-width: 640px) {
+    .divider {
+        padding: 80px 40px;
+    }
+}

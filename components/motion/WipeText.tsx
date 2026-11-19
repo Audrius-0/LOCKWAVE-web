@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from "motion/react";
+import * as m from "motion/react-m";
 import type { Variants } from "motion/react";
 import { VIEWPORT, WIPE } from "./springs";
 import styles from "./motion.module.css";
@@ -28,7 +28,7 @@ function variantsFor(delay: number): Variants {
 
 export function WipeText({ children, className, delay = 0.15 }: WipeTextProps) {
     return (
-        <motion.span
+        <m.span
             className={`${styles.wipe} ${className ?? ""}`}
             variants={variantsFor(delay)}
             initial="covered"
@@ -36,6 +36,6 @@ export function WipeText({ children, className, delay = 0.15 }: WipeTextProps) {
             viewport={VIEWPORT}
         >
             {children}
-        </motion.span>
+        </m.span>
     );
 }

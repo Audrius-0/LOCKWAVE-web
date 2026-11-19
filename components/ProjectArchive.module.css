@@ -3,7 +3,7 @@
     padding-top: 56px;
 }
 
-/* The title with its count, the category filters under it. */
+/* The title, the category filters under it. */
 .header {
     display: grid;
     gap: 28px;
@@ -16,8 +16,14 @@
     padding: 28px 0;
 }
 
-.band::before,
-.band::after {
+.bandRules {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.bandRules::before,
+.bandRules::after {
     content: "";
     position: absolute;
     left: calc(50% - 50vw);
@@ -27,11 +33,11 @@
     pointer-events: none;
 }
 
-.band::before {
+.bandRules::before {
     top: 0;
 }
 
-.band::after {
+.bandRules::after {
     bottom: 0;
 }
 
@@ -45,16 +51,6 @@
     font-kerning: none;
     text-transform: uppercase;
     color: var(--lw-text);
-}
-
-/* The count, small and raised beside the title: [07]. */
-.total {
-    margin-left: 8px;
-    font-size: 15px;
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    vertical-align: super;
-    color: var(--lw-accent);
 }
 
 .srOnly {
@@ -207,20 +203,10 @@
     transform: translate(-50%, -50%);
 }
 
-/* Under the photo: the number and category in green, the name under it. */
+/* Under the photo: the project's name. */
 .caption {
     display: grid;
-    gap: 8px;
     padding: 20px 24px 24px;
-}
-
-.category {
-    font-size: 15px;
-    font-weight: 600;
-    line-height: 20px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--lw-accent);
 }
 
 .name {
@@ -310,15 +296,6 @@
     display: grid;
     gap: 16px;
     align-content: center;
-}
-
-.count {
-    margin: 0;
-    font-size: 15px;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: #8ed1a6;
 }
 
 .title {

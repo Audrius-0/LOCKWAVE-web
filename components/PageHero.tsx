@@ -16,6 +16,8 @@ interface PageHeroProps {
     imageClassName?: string;
     // `src` is a video: it plays silently on a loop behind the title instead of a photo.
     video?: boolean;
+    // With `video`: a still shown until the video plays (its first frame).
+    poster?: string;
     // Per-page title tweaks, e.g. breaking a two-word title onto two lines.
     titleClassName?: string;
     // Per-page placement of the title block (and so of the guide lines framing it).
@@ -35,10 +37,11 @@ const GLITCH_COLOR = {
 /*
  * A page's opening screen: a full-screen photo (or looping video) with the page name in heavy letters on
  * the left, and optional buttons under it, framed by green guide lines (one across
- * above, one across below, an upright one just after the title). Title and buttons rise
- * in together like the home page's LOCKWAVE; once in place, now and then a letter flickers.
+ * above, one across below, an upright one just after the title). A photo fades and blurs
+ * in like the home page's. Title and buttons rise in together like the home page's
+ * LOCKWAVE; once in place, now and then a letter flickers.
  */
-function PageHero({ id, title, src, alt, imageClassName, video = false, titleClassName, contentClassName, children, tone = "light" }: PageHeroProps) {
+function PageHero({ id, title, src, alt, imageClassName, video = false, poster, titleClassName, contentClassName, children, tone = "light" }: PageHeroProps) {
     return (
         <section className={styles.hero} aria-labelledby={id}>
             <Parallax>
@@ -46,6 +49,7 @@ function PageHero({ id, title, src, alt, imageClassName, video = false, titleCla
                     // Muted and inline, so browsers let it start on its own.
                     <LoadingVideo
                         src={src}
+                        poster={poster}
                         aria-label={alt}
                         autoPlay
                         muted
@@ -55,7 +59,17 @@ function PageHero({ id, title, src, alt, imageClassName, video = false, titleCla
                         className={`${styles.image} ${styles.video} ${imageClassName ?? ""}`}
                     />
                 ) : (
-                    <LoadingImage src={src} alt={alt} fill sizes="100vw" preload className={`${styles.image} ${imageClassName ?? ""}`} />
+                    // Fades in like the home page's photo.
+                    <Reveal variant="fade" trigger="load" className={styles.photoFade}>
+                        <LoadingImage
+                            src={src}
+                            alt={alt}
+                            fill
+                            sizes="100vw"
+                            fetchPriority="high"
+                            className={`${styles.image} ${imageClassName ?? ""}`}
+                        />
+                    </Reveal>
                 )}
             </Parallax>
             <Reveal trigger="load" delay={0.2} className={`${styles.content} ${contentClassName ?? ""}`}>

@@ -1,9 +1,8 @@
 'use client';
 
+import * as m from "motion/react-m";
 import type { CSSProperties } from "react";
-import { motion } from "motion/react";
 import type { Variants } from "motion/react";
-import ArrowLink from "../ArrowLink";
 import LoadingImage from "../LandingPage/LoadingImage";
 import { RevealGroup, RevealItem } from "../motion/Reveal";
 import { VIEWPORT, WIPE } from "../motion/springs";
@@ -30,12 +29,14 @@ interface ProductAnatomyProps {
     image: string;
     alt: string;
     callouts: Callout[];
-    // Where the "More info" button beside the pointers leads, e.g. "#advantages".
-    infoHref: string;
     // How far along the product is, shown at the figure's top left: e.g. Prototype / TRL 5.
     stage?: { label: string; value: string };
     // Land a jump to this product this many px further down than the photo's centre.
     jumpShift?: number;
+    // false: leave out the category and name (a group heading above already names it).
+    showName?: boolean;
+    // The photo's pixel size, for its shape (default: the 2848 × 4288 upright photos).
+    imageSize?: { width: number; height: number };
 }
 
 /*
@@ -69,23 +70,39 @@ const FADE: Variants = {
  * One product shown whole, with pointers from its parts out to short descriptions on
  * either side. Phones: numbered dots on the photo and a matching numbered list below.
  */
-function ProductAnatomy({ id, category, name, intro, image, alt, callouts, infoHref, stage, jumpShift = 0 }: ProductAnatomyProps) {
+const UPRIGHT = { width: 2848, height: 4288 };
+
+function ProductAnatomy({ id, category, name, intro, image, alt, callouts, stage, jumpShift = 0, imageSize = UPRIGHT, showName = true }: ProductAnatomyProps) {
     return (
-        <section className={section.section} aria-labelledby={`${id}-name`}>
+        <section
+            className={section.section}
+            aria-labelledby={showName ? `${id}-name` : undefined}
+            aria-label={showName ? undefined : name}
+        >
             <div className={section.inner}>
                 <RevealGroup className={styles.heading}>
-                    <RevealItem as="p" className={styles.category}>{category}</RevealItem>
-                    <RevealItem as="h2" id={`${id}-name`} className={`${section.title} ${styles.name}`}>{name}</RevealItem>
+                    {showName && <RevealItem as="p" className={styles.category}>{category}</RevealItem>}
+                    {showName && (
+                        <RevealItem as="h2" id={`${id}-name`} className={`${section.title} ${styles.name}`}>
+                            {name}
+                        </RevealItem>
+                    )}
                     <RevealItem as="p" className={section.lead}>{intro}</RevealItem>
                 </RevealGroup>
 
-                <motion.figure className={styles.figure} initial="hidden" whileInView="shown" viewport={VIEWPORT}>
+                <m.figure
+                    className={styles.figure}
+                    style={{ "--photo-w": imageSize.width, "--photo-h": imageSize.height } as CSSProperties}
+                    initial="hidden"
+                    whileInView="shown"
+                    viewport={VIEWPORT}
+                >
                     {/* Readiness: phones, above the photo; desktop, the free top of the left column. */}
                     {stage && (
-                        <motion.p className={styles.stage} variants={FADE} custom={0}>
+                        <m.p className={styles.stage} variants={FADE} custom={0}>
                             <span className={styles.stageLabel}>{stage.label}</span>
                             <span className={styles.stageValue}>{stage.value}</span>
-                        </motion.p>
+                        </m.p>
                     )}
 
                     <div className={styles.photo}>
@@ -109,7 +126,7 @@ function ProductAnatomy({ id, category, name, intro, image, alt, callouts, infoH
                             const x1 = LINE_START[c.side];
                             const y1 = c.labelY ?? c.y;
                             return (
-                                <motion.line
+                                <m.line
                                     key={c.label}
                                     x1={x1}
                                     y1={y1}
@@ -123,7 +140,7 @@ function ProductAnatomy({ id, category, name, intro, image, alt, callouts, infoH
 
                     <ol className={styles.labels}>
                         {callouts.map((c, i) => (
-                            <motion.li
+                            <m.li
                                 key={c.label}
                                 className={`${styles.label} ${styles[c.side]}`}
                                 style={{ "--label-y": `${c.labelY ?? c.y}%` } as CSSProperties}
@@ -133,21 +150,10 @@ function ProductAnatomy({ id, category, name, intro, image, alt, callouts, infoH
                                 <span className={styles.number} aria-hidden="true">{i + 1}</span>
                                 <span className={styles.labelName}>{c.label}</span>
                                 <span className={styles.labelText}>{c.text}</span>
-                            </motion.li>
+                            </m.li>
                         ))}
                     </ol>
-
-                    {/*
-                      * The same round pill as the product buttons in the hero, jumping to more
-                      * info on the page. It takes a pointer label's place: desktop, the free top
-                      * of the left label column; phones, the end of the list. It fades in after
-                      * the pointers.
-                      */}
-                    <motion.div className={styles.action} variants={FADE} custom={callouts.length}>
-                        <ArrowLink href={infoHref} variant="pill">More info</ArrowLink>
-                    </motion.div>
-
-                </motion.figure>
+                </m.figure>
             </div>
 
         </section>
